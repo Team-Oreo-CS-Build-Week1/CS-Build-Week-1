@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Dungeon</h1>
-        <Register />
         <Login />
+        <Register />
       </header>
     </div>
   );
