@@ -17,6 +17,12 @@ export default class Register extends Component {
     // this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
   handleSubmit(event) {
     console.log("form subitted");
     event.preventDefault();
@@ -51,6 +57,15 @@ export default class Register extends Component {
             onChange={this.handleChange}
             required
           />
+          <input
+            type="password"
+            name="password_confirmation"
+            placeholder="Confirm Pasword"
+            value={this.state.password_confirmation}
+            onChange={this.handleChange}
+            required
+          />
+          <button typer="Submit">Register</button>
         </form>
       </div>
     );
