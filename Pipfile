@@ -18,6 +18,7 @@ psycopg2 = "*"
 psycopg2-binary = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.7"
