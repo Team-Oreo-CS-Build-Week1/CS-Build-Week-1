@@ -22,6 +22,24 @@ def initialize(request):
     players = room.playerNames(player_id)
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
 
+@csrf_exempt
+@api_view(["GET"])
+def rooms(request):
+  query = Room.objects.all()
+  rooms = []
+  for room in query:
+    print("ROOM", room)
+    rooms.append({
+      'id': room.id,
+      'title': room.title,
+      'description': room.description,
+      'n_to': room.n_to,
+      's_to': room.s_to,
+      'e_to': room.e_to,
+      'w_to': room.w_to
+    })
+    return JsonResponse(rooms, safe=False)
+# ^^ THIS SHOULD GET ALL 100 ROOMS
 
 # @csrf_exempt
 @api_view(["POST"])

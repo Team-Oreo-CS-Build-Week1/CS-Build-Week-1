@@ -1,73 +1,78 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import React, { useState } from "react";
+// import axiosWithAuth from "./axiosWithAuth";
+// import { Link } from "react-router-dom";
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
+// export default function Register(props) {
+//   const [state, setState] = useState({
+//     username: "",
+//     password: ""
+//   });
 
-    this.state = {
-      email: "",
-      username: "",
-      password: "",
-      password_confirmation: "",
-      registrationErrors: ""
-    };
+//   const changeHandler = e => {
+//     setState({
+//       ...state,
+//       [e.target.name]: e.target.value
+//     });
+//   };
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
-  }
+//   const submitHandler = (e, state) => {
+//     e.preventDefault();
+//     console.log(state);
+//     axiosWithAuth()
+//       .post("http://localhost:8000/api/login/", state)
+//       .then(res => {
+//         console.log("RESPONSE", res);
+//         localStorage.setItem("token", res.data.key);
+//         props.history.push("/");
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//     setState({
+//       username: "",
+//       password: ""
+//     });
+//   };
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
-
-  handleSubmit(event) {
-    console.log("form subitted");
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <div>
-        <div>Register goes here</div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="username"
-            name="username"
-            placeholder="Username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Confirm Pasword"
-            value={this.state.password_confirmation}
-            onChange={this.handleChange}
-            required
-          />
-          <button typer="Submit">Register</button>
-        </form>
-      </div>
-    );
-  }
-}
+//   return (
+//     <div className="wrapper">
+//       <div className="signup-text">
+//         <h1>Sign in to your account</h1>
+//       </div>
+//       <form onSubmit={e => submitHandler(e, state)}>
+//         <div>
+//           <label style={{ textAlign: "left" }}>Username</label>
+//           <input
+//             type="text"
+//             name="username"
+//             placeholder="Enter Username"
+//             value={state.username}
+//             onChange={changeHandler}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label style={{ textAlign: "left" }}>Password</label>
+//           <input
+//             type="password"
+//             name="password"
+//             value={state.password}
+//             onChange={changeHandler}
+//             placeholder="Enter Password"
+//             required
+//           />
+//         </div>
+//         <button
+//           className="signup-btn"
+//           style={
+//             state.email && state.password
+//               ? { backgroundColor: "#0D5814" }
+//               : { backgroundColor: "#85a688" }
+//           }
+//         >
+//           Submit
+//         </button>
+//       </form>
+//     </div>
+//   );
+// }
