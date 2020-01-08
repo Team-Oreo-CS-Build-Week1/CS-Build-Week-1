@@ -28,7 +28,7 @@ def rooms(request):
   query = Room.objects.all()
   rooms = []
   for room in query:
-    print("ROOM", room)
+    print('ROOM', room)
     rooms.append({
       'id': room.id,
       'title': room.title,
@@ -38,8 +38,7 @@ def rooms(request):
       'e_to': room.e_to,
       'w_to': room.w_to
     })
-    return JsonResponse(rooms, safe=False)
-# ^^ THIS SHOULD GET ALL 100 ROOMS
+  return JsonResponse(rooms, safe=False)
 
 # @csrf_exempt
 @api_view(["POST"])

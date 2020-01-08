@@ -1,8 +1,8 @@
 import React from "react";
 import Dashboard from "./components/Dashboard";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
-import Login from "./auth/Login";
-import PrivateRoute from "./auth/PrivateRoute";
+import { Route, Switch,  BrowserRouter } from "react-router-dom";
+import Login from "./authentication/Login";
+import PrivateRoute from "./authentication/PrivateRoute";
 
 function Routes(props) {
   return (
