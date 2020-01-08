@@ -254,6 +254,8 @@
                 "sha256:eaed1c65f461a959284649e37b5051224f4db6ebdc84e40b5e65f2986f101a08"
             ],
             "index": "pypi",
+
+
             "version": "==2.8.4"
         },
         "pusher": {
@@ -467,6 +469,7 @@
             "hashes": [
                 "sha256:565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1",
                 "sha256:68a591be6c4ce92ae559f2060ad4976cf1268468b43aee30ff1bfa5f920c1cf3"
+
             ],
             "version": "==1.11.2"
         }
