@@ -1,13 +1,5 @@
 {
-<<<<<<< HEAD
-    "python.pythonPath": "/usr/local/bin/python",
-    "python.formatting.provider": "black"
+    "python.venvPath": "/Users/me/.local/share/virtualenvs/",
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
+    "python.jediEnabled": true,
 }
-=======
-  "python.pythonPath": "/Users/lianalee/.local/share/virtualenvs/CS-Build-Week-1-9bjKi-C9/bin/python",
-  "python.venvPath": "/Users/me/.local/share/virtualenvs/",
-  "python.pythonPath": "/Users/me/.local/share/virtualenvs/ENV-NAME/bin/python",
-  "python.jediEnabled": true,
-}
-
->>>>>>> e3c8d33f92734f4067a777a306d8445aaf3d2b22
