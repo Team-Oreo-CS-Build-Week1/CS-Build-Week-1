@@ -159,6 +159,7 @@ function Dashboard() {
       })
 
     })
+    
     .catch(err => {
         console.log(err)
     })
