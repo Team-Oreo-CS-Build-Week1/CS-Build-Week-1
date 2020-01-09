@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import background from "./images/background.jpg";
+import dragon from "./reddragon.jpg"
+import fire from "./fire.jpeg"
 import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
@@ -36,13 +37,12 @@ export default function Register(props) {
   };
 
   return (
-    <div styles={{ backgroundImage: `url(${background})` }}>
+    <div >
       <div
         className="form"
         style={{
           textAlign: "center",
           background: "black",
-          //   backgroundImage: `https://i.ytimg.com/vi/lJ3jbXYY-98/maxresdefault.jpg`,
           height: "620px",
           width: "100%"
         }}
@@ -50,6 +50,7 @@ export default function Register(props) {
         <div className="register-text">
           <Title> Register </Title>
           <GlobalStyles />
+          <img src={dragon} style={{width: "7.5rem"}} />
         </div>
         {/* <form onSubmit={handleSubmit}> */}
         <form onSubmit={event => handleSubmit(event, userInfo)}>
@@ -82,9 +83,10 @@ export default function Register(props) {
           />
           <br />
           <div className="regButton" style={{ marginTop: "10px" }}>
-            <button style={{ color: "lime", backgroundColor: "grey" }}>
+            <button style={{ color: "red", backgroundColor: "lime", fontWeight: "bold", marginTop: "20px" }}>
               Create Account
             </button>
+            {/* <img src={fire} style={{width: "20rem"}}/> */}
           </div>
         </form>
       </div>
@@ -99,7 +101,7 @@ const Title = styled.h1`
   margin-top: 0px;
   padding-top: 50px;
   font-family: "Press Start 2P", cursive;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 `;
 const Label = styled.h1`
   font-size: 1em;

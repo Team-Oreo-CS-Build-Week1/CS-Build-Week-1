@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import axios from "axios"
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+  body {
+    font-family: 'Notable', sans-serif;
+  }
+`;
+
 
 export default function Login(props)  {
     const [state, setState] = useState({
@@ -36,12 +45,20 @@ export default function Login(props)  {
         return (
             <div className='wrapper'>
                 <div className="signup-text">
-                    <h1>Sign in to your account</h1>
-                </div>
-                <form onSubmit={(e) => submitHandler(e, state)}>
+        <GlobalStyles />
+                    </div>
+                <form style={{
+          textAlign: "center",
+          background: "black",
+          //   backgroundImage: `https://i.ytimg.com/vi/lJ3jbXYY-98/maxresdefault.jpg`,
+          height: "620px",
+          width: "100%"
+        }} onSubmit={(e) => submitHandler(e, state)}>
                     <div>
-                        <label style={{textAlign:'left'}}>Username</label>           
-                        <input 
+                    <Title> Sign in to your account </Title>
+
+<Label> Username </Label>            
+            <input 
                             type="text" 
                             name="username" 
                             placeholder="Enter Username"
@@ -68,3 +85,21 @@ export default function Login(props)  {
             </div>
         )
     }
+
+
+const Title = styled.h1`
+font-size: 1.5em;
+text-align: center;
+color: lime;
+margin-top: 0px;
+padding-top: 50px;
+font-family: "Press Start 2P", cursive;
+padding-bottom: 80px;
+`;
+const Label = styled.h1`
+font-size: 1em;
+text-align: center;
+color: white;
+padding-top: 10px;
+font-family: "Press Start 2P", cursive;
+`;
