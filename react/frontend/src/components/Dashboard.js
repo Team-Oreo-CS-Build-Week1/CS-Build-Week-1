@@ -46,11 +46,11 @@ function Dashboard() {
            map[x][y] = {room: false, id: -1, roomData: '', left: false, right: false, up: false, down: false}
         }
        
-        const map = createMap(50, 50);
+        const map = createMap(20, 20);
         console.log('MAP', map)
 
-        let y = 49;
-        let x= 25;
+        let y = 19;
+        let x= 9;
         let position = map[y][x];
         position.room = true
         position.id = data[0].id
@@ -67,7 +67,7 @@ function Dashboard() {
           console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
           if (current.roomData.n_to) {
             console.log('IF TRUE')
-            while (current.roomData.n_to > 0 && yAxis >= 0) {
+            while (current.roomData.n_to > 0 && yAxis >= 1) {
               current.up = true;
               map[yAxis-1][xAxis].roomData = lookup[current.roomData.n_to];
               map[yAxis-1][xAxis].id = lookup[current.roomData.n_to].id;
@@ -88,7 +88,7 @@ function Dashboard() {
           // let xAxis = x;
           while (yAxis >= 0) {
             let xStart = 0;
-            while(xStart <= 49) {
+            while(xStart <= 19) {
               // console.log('First while xAxis: ', xAxis)
               let newPosition = map[yAxis][xStart]
               goNorth(newPosition, yAxis, xStart);
@@ -97,7 +97,7 @@ function Dashboard() {
               xStart++;
             }
 
-            let xEnd = 49;
+            let xEnd = 19;
             while(xEnd >= 0) {
               // console.log('First while xAxis: ', xAxis)
               let newPosition = map[yAxis][xEnd]
@@ -115,7 +115,7 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          while (current.roomData.e_to > 0 && xAxis <= 49) {
+          while (current.roomData.e_to > 0 && xAxis <= 18) {
             current.right = true;
             map[yAxis][xAxis+1].roomData = lookup[current.roomData.e_to];
             map[yAxis][xAxis+1].id = lookup[current.roomData.e_to].id;
@@ -293,7 +293,7 @@ export default Dashboard;
 function Row({row, selected} ) {
 console.log('ROW', row)
   return (
-    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
          }}>
       {row.map(card => {
         return <Card card={card} selected={selected}/>
