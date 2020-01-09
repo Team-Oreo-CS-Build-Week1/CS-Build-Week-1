@@ -86,7 +86,6 @@ export default function Register(props) {
             <button style={{ color: "red", backgroundColor: "lime", fontWeight: "bold", marginTop: "20px" }}>
               Create Account
             </button>
-            {/* <img src={fire} style={{width: "20rem"}}/> */}
           </div>
         </form>
       </div>
