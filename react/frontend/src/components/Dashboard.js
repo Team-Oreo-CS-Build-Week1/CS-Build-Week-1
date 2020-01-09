@@ -5,6 +5,7 @@ function Dashboard() {
   const [array, setArray] = useState([]);
   const [selected, setSelected] = useState({id: ""});
   const [display, setDisplay] = useState({})
+  const [movement, setMovement] =useState(false)
 
   useEffect(() => {
     console.log('TOKEN', localStorage.getItem('token'))
@@ -50,7 +51,7 @@ function Dashboard() {
         }
        
         const map = createMap(50, 50);
-        console.log('MAP', map)
+        // console.log('MAP', map)
 
         let y = 49;
         let x= 25;
@@ -59,7 +60,7 @@ function Dashboard() {
         position.id = data[0].id
         position.roomData = data[0]
 
-        console.log('UPDATED MAP', map)
+        // console.log('UPDATED MAP', map)
 
         buildBoard(position, y, x);
         
@@ -67,9 +68,9 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
+          // console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
           if (current.roomData.n_to) {
-            console.log('IF TRUE')
+            // console.log('IF TRUE')
             while (current.roomData.n_to > 0 && yAxis >= 1) {
               current.up = true;
               map[yAxis-1][xAxis].roomData = lookup[current.roomData.n_to];
@@ -147,7 +148,7 @@ function Dashboard() {
         }
         
 
-        console.log('HERE', map)
+        // console.log('HERE', map)
 
         setArray(map);
 
@@ -163,24 +164,31 @@ function Dashboard() {
     axiosWithAuth()
     .post('http://localhost:8000/api/adv/move', {direction: 'n'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('http://localhost:8000/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title==display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }  
         setDisplay(res.data)
+        
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
+          
       })
 
     })
 
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -189,23 +197,28 @@ function Dashboard() {
     axiosWithAuth()
     .post('http://localhost:8000/api/adv/move', {direction: 'w'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('http://localhost:8000/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title==display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
         setDisplay(res.data)
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -214,23 +227,29 @@ function Dashboard() {
     axiosWithAuth()
     .post('http://localhost:8000/api/adv/move', {direction: 'e'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('http://localhost:8000/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title==display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
         setDisplay(res.data)
+        
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -239,26 +258,34 @@ function Dashboard() {
     axiosWithAuth()
     .post('http://localhost:8000/api/adv/move', {direction: 's'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('http://localhost:8000/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title==display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
         setDisplay(res.data)
   
       })
       .catch(err => {
-          console.log(err)
+        console.log("movement1",movement)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log("movement",movement)
+      console.log(err)
     })
   }
 
+  
   return (
     <div>
       <div style={{display: 'flex', justifyContent: 'center', fontSize: '28px', fontWeight: '600', paddingTop: '20px'}}>Game Board</div>
@@ -270,6 +297,8 @@ function Dashboard() {
         </div>
         <div style={{width: '20%', marginTop: '20px'}}>
           <div>Room</div>
+          <div>{display.title} {display.description}</div>
+          {movement && <div>Cannot move in this direction </div>}
           <div style={{width: '120px', height: '120px', borderRadius: '70px', backgroundColor: 'gray'}}>
             {/* <div style={{borderRadius: '70px'}}> */}
               <div style={{display: 'flex'}}>
@@ -298,7 +327,7 @@ function Dashboard() {
 export default Dashboard;
 
 function Row({row, selected} ) {
-console.log('ROW', row)
+// console.log('ROW', row)
   return (
     <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
          }}>
@@ -310,7 +339,7 @@ console.log('ROW', row)
 }
 
 function Card({card, selected}) {
-console.log('CARD', card, 'selected', selected)
+// console.log('CARD', card, 'selected', selected)
   return (
     <div style={{height: '20px', width: '100%',
                  backgroundColor: `${card.room ? card.id === selected ? "orange" : "green" : "gray"}`,
