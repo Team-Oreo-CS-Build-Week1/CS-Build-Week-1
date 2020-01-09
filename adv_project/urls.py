@@ -7,6 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api/adv/', include('adventure.urls')),
-    path(r'^.*/$', views.FrontendAppView.as_view()), 
-    
+    include(r'^$', views.FrontendAppView.as_view()), 
+    # path(r'^.*/$', views.FrontendAppView.as_view()), 
 ]
