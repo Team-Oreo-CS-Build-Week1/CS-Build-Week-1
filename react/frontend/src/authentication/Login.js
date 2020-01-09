@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios"
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import dragon from "./reddragon.jpg"
 import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
@@ -56,6 +57,7 @@ export default function Login(props)  {
         }} onSubmit={(e) => submitHandler(e, state)}>
                     <div>
                     <Title> Sign in to your account </Title>
+                    <img src={dragon} style={{width: "7.5rem"}} />
 
 <Label> Username </Label>            
             <input 
@@ -68,8 +70,7 @@ export default function Login(props)  {
                         />
                     </div>
                     <div>
-                        <label style={{textAlign:'left'}}>Password</label>  
-                        <input 
+<Label> Password </Label>                        <input 
                             type="password" 
                             name="password" 
                             value={state.password}
@@ -79,8 +80,11 @@ export default function Login(props)  {
                         />
                     </div>
                     <button className="signup-btn"
-                    style={(state.email && state.password)? {backgroundColor: "#0D5814"}:{backgroundColor: "#85a688"}}>
+                    // style={(state.email && state.password)? {backgroundColor: "#0D5814"}:{backgroundColor: "#85a688"}}>
+                    style={( state.email && state.password)? {backgroundColor: "#85a688"}: {color: "red", backgroundColor: "lime", fontWeight: "bold", marginTop: "20px" }}>
+
                     Submit</button>
+
                 </form>
             </div>
         )
@@ -94,7 +98,7 @@ color: lime;
 margin-top: 0px;
 padding-top: 50px;
 font-family: "Press Start 2P", cursive;
-padding-bottom: 80px;
+padding-bottom: 60px;
 `;
 const Label = styled.h1`
 font-size: 1em;
