@@ -4,6 +4,7 @@ import axiosWithAuth from "../authentication/axiosWithAuth";
 function Dashboard() {
   const [array, setArray] = useState([]);
   const [selected, setSelected] = useState({id: ""});
+  const [display, setDisplay] = useState({})
 
   useEffect(() => {
     console.log('TOKEN', localStorage.getItem('token'))
@@ -19,6 +20,8 @@ function Dashboard() {
         .then(res => {
           console.log('INIT RESPONSE', res)
           setSelected(res.data.roomId)
+          setDisplay(res.data)
+
         })
         .catch(err => {
             console.log(err)
@@ -67,7 +70,7 @@ function Dashboard() {
           console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
           if (current.roomData.n_to) {
             console.log('IF TRUE')
-            while (current.roomData.n_to > 0 && yAxis >= 0) {
+            while (current.roomData.n_to > 0 && yAxis >= 1) {
               current.up = true;
               map[yAxis-1][xAxis].roomData = lookup[current.roomData.n_to];
               map[yAxis-1][xAxis].id = lookup[current.roomData.n_to].id;
@@ -153,7 +156,7 @@ function Dashboard() {
         console.log(err)
     })
   }, [])
-
+  
   const handleUp = (e) => {
     console.log('click up')
 
@@ -167,6 +170,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        setDisplay(res.data)
   
       })
       .catch(err => {
@@ -192,6 +196,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        setDisplay(res.data)
   
       })
       .catch(err => {
@@ -216,6 +221,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        setDisplay(res.data)
   
       })
       .catch(err => {
@@ -240,6 +246,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        setDisplay(res.data)
   
       })
       .catch(err => {
