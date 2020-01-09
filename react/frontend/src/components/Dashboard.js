@@ -48,10 +48,10 @@ function Dashboard() {
            map[x][y] = {room: false, id: -1, roomData: '', left: false, right: false, up: false, down: false}
         }
        
-        const map = createMap(20, 20);
+        const map = createMap(30, 30);
 
-        let y = 19;
-        let x= 9;
+        let y = 29;
+        let x= 15;
         let position = map[y][x];
         position.room = true
 
@@ -89,7 +89,7 @@ function Dashboard() {
           // let xAxis = x;
           while (yAxis >= 0) {
             let xStart = 0;
-            while(xStart <= 19) {
+            while(xStart <= 29) {
               let newPosition = map[yAxis][xStart]
               goNorth(newPosition, yAxis, xStart);
               goEast(newPosition, yAxis, xStart);
@@ -97,7 +97,7 @@ function Dashboard() {
               xStart++;
             }
 
-            let xEnd = 19;
+            let xEnd = 29;
             while(xEnd >= 0) {
               let newPosition = map[yAxis][xEnd]
               goNorth(newPosition, yAxis, xEnd);
@@ -114,7 +114,7 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          while (current.roomData.e_to > 0 && xAxis <= 18) {
+          while (current.roomData.e_to > 0 && xAxis <= 28) {
             current.right = true;
             map[yAxis][xAxis+1].roomData = lookup[current.roomData.e_to];
             map[yAxis][xAxis+1].id = lookup[current.roomData.e_to].id;
@@ -161,7 +161,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
-        if (res.data.title==display.title){
+        if (res.data.title===display.title){
           setMovement(true)
         } else{
           setMovement(false)
@@ -193,7 +193,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
-        if (res.data.title==display.title){
+        if (res.data.title===display.title){
           setMovement(true)
         } else{
           setMovement(false)
@@ -222,7 +222,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
-        if (res.data.title==display.title){
+        if (res.data.title===display.title){
           setMovement(true)
         } else{
           setMovement(false)
@@ -252,7 +252,7 @@ function Dashboard() {
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
-        if (res.data.title==display.title){
+        if (res.data.title===display.title){
           setMovement(true)
         } else{
           setMovement(false)
@@ -316,7 +316,7 @@ export default Dashboard;
 function Row({row, selected} ) {
 // console.log('ROW', row)
   return (
-    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
+    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
          }}>
       {row.map(card => {
         return <Card card={card} selected={selected}/>

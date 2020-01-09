@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Register.sass";
+
 
 export default function Register(props) {
   const [userInfo, setUserInfo] = useState({
@@ -17,7 +17,7 @@ export default function Register(props) {
     event.preventDefault();
     console.log(userInfo);
     axios
-      .post("http://localhost:8000/api/registration/", userInfo)
+      .post("https://mud-game-oreo.herokuapp.com/api/registration/", userInfo)
       .then(response => {
         console.log(response.data);
         props.history.push("/login");
