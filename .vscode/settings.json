@@ -1,4 +1,5 @@
 {
-    "python.pythonPath": "/Users/khaledadad/.local/share/virtualenvs/CS-Build-Week-1-s8M85E_D/bin/python"
+    "python.venvPath": "/Users/me/.local/share/virtualenvs/",
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
+    "python.jediEnabled": true,
 }
-

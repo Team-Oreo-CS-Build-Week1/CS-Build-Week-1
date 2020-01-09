@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axiosWithAuth from './axiosWithAuth';
+import axios from "axios"
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Login(props)  {
     const [state, setState] = useState({
@@ -14,13 +15,12 @@ export default function Login(props)  {
             [e.target.name]: e.target.value
         });
     };
-
+ 
     const submitHandler = (e, state) => {
         e.preventDefault()
-        console.log(state)
-        axiosWithAuth()
-            .post('http://localhost:8000/api/login/', state)
-            .then(res => {
+        axios
+            .post('https://mud-game-oreo.herokuapp.com/api/login/', state)
+                .then(res => {
                  console.log('RESPONSE', res)   
                  localStorage.setItem('token', res.data.key)
                  props.history.push('/');           

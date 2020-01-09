@@ -10,14 +10,13 @@ function Dashboard() {
   useEffect(() => {
     console.log('TOKEN', localStorage.getItem('token'))
     axiosWithAuth()
-    // .get('http://localhost:8000/api/adv/init')
-    .get('http://localhost:8000/api/adv/rooms')
+    .get('https://mud-game-oreo.herokuapp.com/api/adv/rooms')
     .then(res => {
         console.log('ROOMS DATA', res.data)
         let data = res.data;
 
         axiosWithAuth()
-        .get('http://localhost:8000/api/adv/init')
+        .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
         .then(res => {
           console.log('INIT RESPONSE', res)
           setSelected(res.data.roomId)
@@ -28,12 +27,11 @@ function Dashboard() {
             console.log(err)
         })
 
+
         let lookup = {};
         for (let i = 0; i < data.length; i++) {
           lookup[data[i].id] = data[i]
         }
-
-        console.log('LOOKUP', lookup)
         
         function createMap(columnCount, rowCount) {
           const map = [];
@@ -50,17 +48,17 @@ function Dashboard() {
            map[x][y] = {room: false, id: -1, roomData: '', left: false, right: false, up: false, down: false}
         }
        
-        const map = createMap(50, 50);
-        // console.log('MAP', map)
+        const map = createMap(20, 20);
 
-        let y = 49;
-        let x= 25;
+        let y = 19;
+        let x= 9;
         let position = map[y][x];
         position.room = true
-        position.id = data[0].id
-        position.roomData = data[0]
 
-        // console.log('UPDATED MAP', map)
+        position.id = data[5].id
+        position.roomData = data[5]
+
+
 
         buildBoard(position, y, x);
         
@@ -68,9 +66,8 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          // console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
+
           if (current.roomData.n_to) {
-            // console.log('IF TRUE')
             while (current.roomData.n_to > 0 && yAxis >= 1) {
               current.up = true;
               map[yAxis-1][xAxis].roomData = lookup[current.roomData.n_to];
@@ -92,8 +89,7 @@ function Dashboard() {
           // let xAxis = x;
           while (yAxis >= 0) {
             let xStart = 0;
-            while(xStart <= 49) {
-              // console.log('First while xAxis: ', xAxis)
+            while(xStart <= 19) {
               let newPosition = map[yAxis][xStart]
               goNorth(newPosition, yAxis, xStart);
               goEast(newPosition, yAxis, xStart);
@@ -101,9 +97,8 @@ function Dashboard() {
               xStart++;
             }
 
-            let xEnd = 49;
+            let xEnd = 19;
             while(xEnd >= 0) {
-              // console.log('First while xAxis: ', xAxis)
               let newPosition = map[yAxis][xEnd]
               goNorth(newPosition, yAxis, xEnd);
               goEast(newPosition, yAxis, xEnd);
@@ -119,7 +114,7 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          while (current.roomData.e_to > 0 && xAxis <= 49) {
+          while (current.roomData.e_to > 0 && xAxis <= 18) {
             current.right = true;
             map[yAxis][xAxis+1].roomData = lookup[current.roomData.e_to];
             map[yAxis][xAxis+1].id = lookup[current.roomData.e_to].id;
@@ -146,9 +141,6 @@ function Dashboard() {
             
           }
         }
-        
-
-        // console.log('HERE', map)
 
         setArray(map);
 
@@ -159,15 +151,13 @@ function Dashboard() {
   }, [])
   
   const handleUp = (e) => {
-    console.log('click up')
-
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'n'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'n'})
     .then(res => {
        console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -193,14 +183,13 @@ function Dashboard() {
   }
 
   const handleLeft = (e) => {
-    console.log('click left')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'w'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'w'})
     .then(res => {
        console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -223,14 +212,13 @@ function Dashboard() {
   }
 
   const handleRight = (e) => {
-    console.log('click right')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'e'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'e'})
     .then(res => {
        console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -254,14 +242,13 @@ function Dashboard() {
   }
 
   const handleDown = (e) => {
-    console.log('click down')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 's'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 's'})
     .then(res => {
        console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -329,7 +316,7 @@ export default Dashboard;
 function Row({row, selected} ) {
 // console.log('ROW', row)
   return (
-    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
          }}>
       {row.map(card => {
         return <Card card={card} selected={selected}/>
