@@ -23,6 +23,7 @@ function Dashboard() {
             console.log(err)
         })
 
+
         let lookup = {};
         for (let i = 0; i < data.length; i++) {
           lookup[data[i].id] = data[i]
@@ -49,8 +50,10 @@ function Dashboard() {
         let x= 9;
         let position = map[y][x];
         position.room = true
+
         position.id = data[5].id
         position.roomData = data[5]
+
 
 
         buildBoard(position, y, x);
