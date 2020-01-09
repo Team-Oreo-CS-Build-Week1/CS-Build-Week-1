@@ -8,16 +8,12 @@ function Dashboard() {
   useEffect(() => {
     console.log('TOKEN', localStorage.getItem('token'))
     axiosWithAuth()
-    // .get('http://localhost:8000/api/adv/init')
-    
-    // .get('http://localhost:8000/api/adv/rooms')
     .get('https://mud-game-oreo.herokuapp.com/api/adv/rooms')
     .then(res => {
         console.log('ROOMS DATA', res.data)
         let data = res.data;
 
         axiosWithAuth()
-        // .get('http://localhost:8000/api/adv/init')
         .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
         .then(res => {
           console.log('INIT RESPONSE', res)
@@ -31,8 +27,6 @@ function Dashboard() {
         for (let i = 0; i < data.length; i++) {
           lookup[data[i].id] = data[i]
         }
-
-        console.log('LOOKUP', lookup)
         
         function createMap(columnCount, rowCount) {
           const map = [];
@@ -50,16 +44,14 @@ function Dashboard() {
         }
        
         const map = createMap(20, 20);
-        console.log('MAP', map)
 
         let y = 19;
         let x= 9;
         let position = map[y][x];
         position.room = true
-        position.id = data[0].id
-        position.roomData = data[0]
+        position.id = data[5].id
+        position.roomData = data[5]
 
-        console.log('UPDATED MAP', map)
 
         buildBoard(position, y, x);
         
@@ -67,9 +59,8 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          console.log('GOjustNorth: Y: ', y, 'X: ',x, 'CURRENT NODE: ', current )
+
           if (current.roomData.n_to) {
-            console.log('IF TRUE')
             while (current.roomData.n_to > 0 && yAxis >= 1) {
               current.up = true;
               map[yAxis-1][xAxis].roomData = lookup[current.roomData.n_to];
@@ -92,7 +83,6 @@ function Dashboard() {
           while (yAxis >= 0) {
             let xStart = 0;
             while(xStart <= 19) {
-              // console.log('First while xAxis: ', xAxis)
               let newPosition = map[yAxis][xStart]
               goNorth(newPosition, yAxis, xStart);
               goEast(newPosition, yAxis, xStart);
@@ -102,7 +92,6 @@ function Dashboard() {
 
             let xEnd = 19;
             while(xEnd >= 0) {
-              // console.log('First while xAxis: ', xAxis)
               let newPosition = map[yAxis][xEnd]
               goNorth(newPosition, yAxis, xEnd);
               goEast(newPosition, yAxis, xEnd);
@@ -145,9 +134,6 @@ function Dashboard() {
             
           }
         }
-        
-
-        console.log('HERE', map)
 
         setArray(map);
 
@@ -158,16 +144,12 @@ function Dashboard() {
   }, [])
 
   const handleUp = (e) => {
-    console.log('click up')
-
     axiosWithAuth()
-    // .post('http://localhost:8000/api/adv/move', {direction: 'n'})
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'n'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      // .get('http://localhost:8000/api/adv/init')
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
@@ -186,15 +168,12 @@ function Dashboard() {
   }
 
   const handleLeft = (e) => {
-    console.log('click left')
     axiosWithAuth()
-    // .post('http://localhost:8000/api/adv/move', {direction: 'w'})
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'w'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      // .get('http://localhost:8000/api/adv/init')
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
@@ -212,15 +191,12 @@ function Dashboard() {
   }
 
   const handleRight = (e) => {
-    console.log('click right')
     axiosWithAuth()
-    // .post('http://localhost:8000/api/adv/move', {direction: 'e'})
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'e'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      // .get('http://localhost:8000/api/adv/init')
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
@@ -238,15 +214,12 @@ function Dashboard() {
   }
 
   const handleDown = (e) => {
-    console.log('click down')
     axiosWithAuth()
-    // .post('http://localhost:8000/api/adv/move', {direction: 's'})
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 's'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      // .get('http://localhost:8000/api/adv/init')
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
