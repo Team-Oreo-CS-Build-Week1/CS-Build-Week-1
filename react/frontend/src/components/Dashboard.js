@@ -9,13 +9,16 @@ function Dashboard() {
     console.log('TOKEN', localStorage.getItem('token'))
     axiosWithAuth()
     // .get('http://localhost:8000/api/adv/init')
-    .get('http://localhost:8000/api/adv/rooms')
+    
+    // .get('http://localhost:8000/api/adv/rooms')
+    .get('https://mud-game-oreo.herokuapp.com/api/adv/rooms')
     .then(res => {
         console.log('ROOMS DATA', res.data)
         let data = res.data;
 
         axiosWithAuth()
-        .get('http://localhost:8000/api/adv/init')
+        // .get('http://localhost:8000/api/adv/init')
+        .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
         .then(res => {
           console.log('INIT RESPONSE', res)
           setSelected(res.data.roomId)
@@ -158,12 +161,14 @@ function Dashboard() {
     console.log('click up')
 
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'n'})
+    // .post('http://localhost:8000/api/adv/move', {direction: 'n'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'n'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      // .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -183,12 +188,14 @@ function Dashboard() {
   const handleLeft = (e) => {
     console.log('click left')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'w'})
+    // .post('http://localhost:8000/api/adv/move', {direction: 'w'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'w'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      // .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -207,12 +214,14 @@ function Dashboard() {
   const handleRight = (e) => {
     console.log('click right')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 'e'})
+    // .post('http://localhost:8000/api/adv/move', {direction: 'e'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'e'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      // .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
@@ -231,12 +240,14 @@ function Dashboard() {
   const handleDown = (e) => {
     console.log('click down')
     axiosWithAuth()
-    .post('http://localhost:8000/api/adv/move', {direction: 's'})
+    // .post('http://localhost:8000/api/adv/move', {direction: 's'})
+    .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 's'})
     .then(res => {
       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
-      .get('http://localhost:8000/api/adv/init')
+      // .get('http://localhost:8000/api/adv/init')
+      .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)

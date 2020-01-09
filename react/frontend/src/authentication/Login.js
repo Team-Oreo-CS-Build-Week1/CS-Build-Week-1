@@ -19,7 +19,9 @@ export default function Login(props)  {
         e.preventDefault()
         console.log(state)
         axiosWithAuth()
-            .post('http://localhost:8000/api/login/', state)
+            // .post('http://localhost:8000/api/login/', state)
+            .post('https://mud-game-oreo.herokuapp.com/api/login/', state)
+    
             .then(res => {
                  console.log('RESPONSE', res)   
                  localStorage.setItem('token', res.data.key)
