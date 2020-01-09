@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Register.sass";
 
 export default function Register(props) {
   const [userInfo, setUserInfo] = useState({
