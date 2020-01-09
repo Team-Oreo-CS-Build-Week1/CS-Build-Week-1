@@ -153,9 +153,9 @@ USE_TZ = True
 REACT_APP_DIR = os.path.join(BASE_DIR, 'react')
 FRONTEND = os.path.join(REACT_APP_DIR, 'frontend')
 
-STATICFILES_DIRS= [
-    os.path.join(FRONTEND, 'build', 'static'),
-]
+# STATICFILES_DIRS= [
+#     os.path.join(FRONTEND, 'build', 'static'),
+# ]
 
 import django_heroku
 django_heroku.settings(locals())
