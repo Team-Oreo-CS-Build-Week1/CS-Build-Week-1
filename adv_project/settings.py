@@ -90,10 +90,15 @@ WSGI_APPLICATION = 'adv_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# todo: use .env for these credentials !!!
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd3jstg056678in',
+        'USER': 'amrfvtxyrxedqx',
+        'PASSWORD': 'b8502e4d21256ca97ddb42302f4a344ac5d55b3e95c8555b35708bb8be7151e7',
+        'HOST': 'ec2-174-129-33-13.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -149,6 +154,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# REACT_APP_DIR = os.path.join(BASE_DIR, 'react')
+# FRONTEND = os.path.join(REACT_APP_DIR, 'frontend')
+
+# STATICFILES_DIRS= [
+#     os.path.join(FRONTEND, 'build', 'static'),
+# ]
 
 import django_heroku
 django_heroku.settings(locals())
