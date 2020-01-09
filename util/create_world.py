@@ -51,7 +51,7 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
 from util.makeRooms import makeRooms
-# Room.objects.all().delete()
+Room.objects.all().delete()
 r_outside = Room(title="Outside Cave Entrance",
                description="North of you, the cave mount beckons")
 r_foyer = Room(title="Foyer", description="""Dim light filters in from the south. Dusty
@@ -82,7 +82,7 @@ r_narrow.connectRooms(r_treasure, "n")
 r_treasure.connectRooms(r_narrow, "s")
 r_outside.connectRooms(r_eastFirst, "e")
 r_eastFirst.connectRooms(r_outside, "w")
-makeRooms(r_overlook,r_treasure)
+makeRooms(r_treasure)
 players=Player.objects.all()
 for p in players:
   p.currentRoom=r_outside.id
