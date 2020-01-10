@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import dragon from "./reddragon.jpg"
-import fire from "./fire.jpeg"
 import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
@@ -26,7 +25,7 @@ export default function Register(props) {
     event.preventDefault();
     console.log(userInfo);
     axios
-      .post("http://localhost:8000/api/registration/", userInfo)
+      .post("https://mud-game-oreo.herokuapp.com/api/registration/", userInfo)
       .then(response => {
         console.log(response.data);
         props.history.push("/login");

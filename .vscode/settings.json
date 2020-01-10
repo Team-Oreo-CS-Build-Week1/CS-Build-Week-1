@@ -1,5 +1,5 @@
 {
     "python.venvPath": "/Users/me/.local/share/virtualenvs/",
-    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
+    "python.pythonPath": "/Users/obaidaalbaroudi/.local/share/virtualenvs/CS-Build-Week-1-m_E3jYUL/bin/python",
     "python.jediEnabled": true,
 }

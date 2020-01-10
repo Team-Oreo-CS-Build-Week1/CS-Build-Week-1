@@ -51,7 +51,6 @@ export default function Login(props)  {
                 <form style={{
           textAlign: "center",
           background: "black",
-          //   backgroundImage: `https://i.ytimg.com/vi/lJ3jbXYY-98/maxresdefault.jpg`,
           height: "620px",
           width: "100%"
         }} onSubmit={(e) => submitHandler(e, state)}>
@@ -70,7 +69,8 @@ export default function Login(props)  {
                         />
                     </div>
                     <div>
-<Label> Password </Label>                        <input 
+<Label> Password </Label>                        
+<input 
                             type="password" 
                             name="password" 
                             value={state.password}
@@ -80,7 +80,6 @@ export default function Login(props)  {
                         />
                     </div>
                     <button className="signup-btn"
-                    // style={(state.email && state.password)? {backgroundColor: "#0D5814"}:{backgroundColor: "#85a688"}}>
                     style={( state.email && state.password)? {backgroundColor: "#85a688"}: {color: "red", backgroundColor: "lime", fontWeight: "bold", marginTop: "20px" }}>
 
                     Submit</button>

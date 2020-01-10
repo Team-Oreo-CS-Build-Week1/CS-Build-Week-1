@@ -51,7 +51,6 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
 from util.makeRooms import makeRooms
-
 Room.objects.all().delete()
 r_outside = Room(title="Outside Cave Entrance",
                description="North of you, the cave mount beckons")

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from "../authentication/axiosWithAuth";
+import fire from "./fire.jpeg"
 
 function Dashboard() {
   const [array, setArray] = useState([]);
   const [selected, setSelected] = useState({id: ""});
+  const [display, setDisplay] = useState({})
+  const [movement, setMovement] =useState(false)
 
   useEffect(() => {
     console.log('TOKEN', localStorage.getItem('token'))
@@ -18,6 +21,8 @@ function Dashboard() {
         .then(res => {
           console.log('INIT RESPONSE', res)
           setSelected(res.data.roomId)
+          setDisplay(res.data)
+
         })
         .catch(err => {
             console.log(err)
@@ -44,15 +49,15 @@ function Dashboard() {
            map[x][y] = {room: false, id: -1, roomData: '', left: false, right: false, up: false, down: false}
         }
        
-        const map = createMap(20, 20);
+        const map = createMap(30, 30);
 
-        let y = 19;
-        let x= 9;
+        let y = 29;
+        let x= 15;
         let position = map[y][x];
         position.room = true
 
-        position.id = data[5].id
-        position.roomData = data[5]
+        position.id = data[42].id
+        position.roomData = data[42]
 
 
 
@@ -85,7 +90,7 @@ function Dashboard() {
           // let xAxis = x;
           while (yAxis >= 0) {
             let xStart = 0;
-            while(xStart <= 19) {
+            while(xStart <= 29) {
               let newPosition = map[yAxis][xStart]
               goNorth(newPosition, yAxis, xStart);
               goEast(newPosition, yAxis, xStart);
@@ -93,7 +98,7 @@ function Dashboard() {
               xStart++;
             }
 
-            let xEnd = 19;
+            let xEnd = 29;
             while(xEnd >= 0) {
               let newPosition = map[yAxis][xEnd]
               goNorth(newPosition, yAxis, xEnd);
@@ -110,7 +115,7 @@ function Dashboard() {
           let current = position;
           let yAxis = y;
           let xAxis = x;
-          while (current.roomData.e_to > 0 && xAxis <= 18) {
+          while (current.roomData.e_to > 0 && xAxis <= 28) {
             current.right = true;
             map[yAxis][xAxis+1].roomData = lookup[current.roomData.e_to];
             map[yAxis][xAxis+1].id = lookup[current.roomData.e_to].id;
@@ -145,28 +150,36 @@ function Dashboard() {
         console.log(err)
     })
   }, [])
-
+  
   const handleUp = (e) => {
     axiosWithAuth()
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'n'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title===display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }  
+        setDisplay(res.data)
+        
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
+          
       })
 
     })
 
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -174,22 +187,28 @@ function Dashboard() {
     axiosWithAuth()
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'w'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title===display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
+        setDisplay(res.data)
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -197,22 +216,29 @@ function Dashboard() {
     axiosWithAuth()
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 'e'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title===display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
+        setDisplay(res.data)
+        
   
       })
       .catch(err => {
-          console.log(err)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
@@ -220,25 +246,34 @@ function Dashboard() {
     axiosWithAuth()
     .post('https://mud-game-oreo.herokuapp.com/api/adv/move', {direction: 's'})
     .then(res => {
-      console.log('MOVE RESPONSE', res)
+       console.log('MOVE RESPONSE', res)
 
       axiosWithAuth()
       .get('https://mud-game-oreo.herokuapp.com/api/adv/init')
       .then(res => {
         console.log('INIT RESPONSE', res)
         setSelected(res.data.roomId)
+        if (res.data.title===display.title){
+          setMovement(true)
+        } else{
+          setMovement(false)
+        }
+        setDisplay(res.data)
   
       })
       .catch(err => {
-          console.log(err)
+        console.log("movement1",movement)
+        console.log(err)
       })
 
     })
     .catch(err => {
-        console.log(err)
+      console.log("movement",movement)
+      console.log(err)
     })
   }
 
+  
   return (
     <div>
       <div style={{display: 'flex', justifyContent: 'center', fontSize: '28px', fontWeight: '600', paddingTop: '20px'}}>Game Board</div>
@@ -250,6 +285,8 @@ function Dashboard() {
         </div>
         <div style={{width: '20%', marginTop: '20px'}}>
           <div>Room</div>
+          <div>{display.title} {display.description}</div>
+          {movement && <div>Cannot move in this direction </div>}
           <div style={{width: '120px', height: '120px', borderRadius: '70px', backgroundColor: 'gray'}}>
             {/* <div style={{borderRadius: '70px'}}> */}
               <div style={{display: 'flex'}}>
@@ -278,9 +315,9 @@ function Dashboard() {
 export default Dashboard;
 
 function Row({row, selected} ) {
-console.log('ROW', row)
+// console.log('ROW', row)
   return (
-    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
+    <div style={{display: 'grid', textAlign: 'left', gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ',
          }}>
       {row.map(card => {
         return <Card card={card} selected={selected}/>
@@ -290,10 +327,11 @@ console.log('ROW', row)
 }
 
 function Card({card, selected}) {
-console.log('CARD', card, 'selected', selected)
+// console.log('CARD', card, 'selected', selected)
   return (
     <div style={{height: '20px', width: '100%',
                  backgroundColor: `${card.room ? card.id === selected ? "orange" : "green" : "gray"}`,
+                //  backgroundImage: src={fire},
                  borderTop: `${card.up ? '1px solid red' : '1px solid transparent'}`,
                  borderLeft: `${card.left ? '1px solid red' : '1px solid transparent'}`,
                  borderRight: `${card.right ? '1px solid res' : '1px solid transparent'}`,
